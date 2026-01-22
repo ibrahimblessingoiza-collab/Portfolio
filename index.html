@@ -368,28 +368,69 @@
         </div>
     </footer>
 
-    <script>
-        // Form Handling Logic
-        function selectService(serviceValue) {
-            const select = document.getElementById('formService');
-            select.value = serviceValue;
-            document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
-        }
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        function handleFormSubmit(e) {
+        // Initialize Firebase
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Authenticate anonymously on load
+        signInAnonymously(auth).catch((error) => {
+            console.error("Authentication failed:", error);
+        });
+
+        // Expose handleFormSubmit to global scope so HTML can call it
+        window.handleFormSubmit = async function(e) {
             e.preventDefault();
-            // Simulate form submission to backend
             const btn = e.target.querySelector('button[type="submit"]');
             const originalText = btn.innerText;
             btn.innerText = "Sending...";
             btn.disabled = true;
 
-            setTimeout(() => {
+            const formData = {
+                email: document.getElementById('formEmail').value,
+                service: document.getElementById('formService').value,
+                contactMethod: document.getElementById('formContact').value,
+                contactDetail: document.getElementById('formContactDetail').value,
+                preferredTime: document.getElementById('formTime').value,
+                submittedAt: serverTimestamp()
+            };
+
+            try {
+                // Ensure we are authenticated before writing
+                if (!auth.currentUser) {
+                    await signInAnonymously(auth);
+                }
+
+                // Save to 'leads' collection in Firestore
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'leads'), formData);
+                
+                // Show success message
                 document.getElementById('growthForm').classList.add('hidden');
                 document.getElementById('formSuccess').classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("Something went wrong. Please try again.");
+            } finally {
                 btn.innerText = originalText;
                 btn.disabled = false;
-            }, 1500);
+            }
+        }
+    </script>
+
+    <script>
+        // Form Handling Logic (UI helper)
+        function selectService(serviceValue) {
+            const select = document.getElementById('formService');
+            select.value = serviceValue;
+            document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
         }
 
         function resetForm() {
@@ -398,7 +439,7 @@
             document.getElementById('formSuccess').classList.add('hidden');
         }
 
-        // Simulated AI Tools (Mocking responses since backend is not connected)
+        // Simulated AI Tools (These remain simulations for the demo as they don't require persistence)
         async function runAdGen() {
             const input = document.getElementById('productDesc').value;
             if(!input) return alert("Please describe your product!");
@@ -409,7 +450,6 @@
             setLoading(btn, true);
             resultDiv.classList.add('hidden');
 
-            // Mock Delay
             setTimeout(() => {
                 const mockCopy = `<strong>🔥 HOOK:</strong> Stop settling for dull skin.<br><br><strong>📖 STORY:</strong> You've tried everything, but dryness keeps coming back. Our organic blend penetrates deep to lock in moisture for 24 hours.<br><br><strong>👉 CTA:</strong> Shop the glow now! Link in bio. #Skincare #Glow`;
                 resultDiv.innerHTML = mockCopy;
