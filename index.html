@@ -374,7 +374,8 @@
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Your web app's Firebase configuration
+        // --- GITHUB CONFIGURATION START ---
+        // Replacing dynamic variables with HARDCODED config for GitHub
         const firebaseConfig = {
           apiKey: "AIzaSyCtRcCr12nNm-Ewir2no1wIUawGt9N4R00",
           authDomain: "z-does-marketing.firebaseapp.com",
@@ -384,13 +385,13 @@
           appId: "1:772749036518:web:05684d781a47e37f372427",
           measurementId: "G-5Q8P4QFFBK"
         };
+        // --- GITHUB CONFIGURATION END ---
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
         // Authenticate anonymously on load
         signInAnonymously(auth).catch((error) => {
@@ -421,11 +422,9 @@
                 }
 
                 // Save to 'leads' collection in Firestore
-                // Note: Using the strict path structure required by the environment to avoid permission errors
-                // PLEASE NOTE: In your Firebase Console, ensure:
-                // 1. "Anonymous" Sign-in provider is enabled in Authentication settings.
-                // 2. Firestore Database Rules are set to allow writes (e.g., allow write: if request.auth != null;)
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'leads'), formData);
+                // NOTE: We switched back to a simple 'leads' collection for GitHub.
+                // You MUST update your Firebase Console -> Firestore Database -> Rules to allow writes to /leads
+                await addDoc(collection(db, 'leads'), formData);
                 
                 // Show success message
                 document.getElementById('growthForm').classList.add('hidden');
@@ -434,7 +433,7 @@
             } catch (error) {
                 console.error("Error submitting form:", error);
                 if (error.code === 'permission-denied') {
-                    alert("Permission Error: Please check your Firebase Console.\n1. Enable 'Anonymous' in Authentication > Sign-in method.\n2. Update Firestore Rules to allow writes.");
+                    alert("Permission Error: Please check your Firebase Console.\n1. Enable 'Anonymous' in Authentication > Sign-in method.\n2. Update Firestore Rules to allow writes to 'leads'.");
                 } else {
                     alert("Something went wrong. Please check the console for details.");
                 }
