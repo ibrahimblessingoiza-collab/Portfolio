@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z Does Marketing | Performance Marketing & Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        /* PORTFOLIO PALETTE MAPPED TO YOUR CLASSES */
+                        zdark: '#eaeaea',   /* Light Gray Background (Matches Portfolio) */
+                        zpink: '#db2777',   /* Brand Pink */
+                        zwhite: '#0f172a',  /* Slate 900 (Dark Text for Light BG) */
+                        zgray: '#475569',   /* Slate 600 (Secondary Text) */
+                        zrose: '#9333ea',   /* Brand Purple (Primary Brand Color) */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        
+        .gradient-text {
+            /* Portfolio Gradient: Purple to Pink */
+            background: linear-gradient(135deg, #9333ea 0%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-bg {
+            background-color: #eaeaea;
+            background-image: 
+                radial-gradient(circle at 80% 0%, rgba(147, 51, 234, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.1) 0%, transparent 40%);
+        }
+
+        .ai-card, .form-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+        .ai-card:hover {
+            border-color: #9333ea;
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(147, 51, 234, 0.1);
+        }
+        
+        input, select, textarea {
+            background: rgba(255, 255, 255, 0.6) !important;
+            border: 1px solid rgba(255, 255, 255, 0.9) !important;
+            color: #0f172a !important;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #9333ea !important;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.2);
+            background: rgba(255, 255, 255, 0.9) !important;
+        }
+        
+        ::placeholder {
+            color: #64748b !important;
+        }
+
+        select option {
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #eaeaea; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9333ea; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7e22ce; 
+        }
+    </style>
+</head>
+<body class="bg-zdark text-zwhite">
+
+    <!-- Nav with cleaner glass effect -->
+    <nav class="fixed w-full z-50 bg-[#eaeaea]/80 backdrop-blur-lg border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="text-xl font-bold tracking-tight text-zwhite">
+                Z DOES <span class="text-zrose">MARKETING</span>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-zwhite focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i class="fas fa-bars text-2xl text-slate-900"></i>
+            </button>
+
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <!-- LINKED TO PORTFOLIO.HTML -->
+                <a href="portfolio.html" class="text-zrose hover:text-black transition font-bold">Portfolio</a>
+                <a href="#services" class="text-zgray hover:text-black transition">Services</a>
+                <a href="#ai-tools" class="text-zgray hover:text-black transition">✨ AI Tools</a>
+                <a href="#reviews" class="text-zgray hover:text-black transition">Reviews</a>
+            </div>
+            <a href="#contact-form" class="hidden md:inline-block bg-slate-900 hover:bg-slate-800 text-white px-5 py-2 rounded-full text-sm font-semibold transition duration-300 shadow-lg shadow-slate-900/20">
+                Book Services
+            </a>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#eaeaea] border-b border-white/20 p-4 shadow-lg">
+            <a href="portfolio.html" class="block py-2 text-zrose font-bold">Portfolio</a>
+            <a href="#services" class="block py-2 text-zwhite">Services</a>
+            <a href="#ai-tools" class="block py-2 text-zwhite">✨ AI Tools</a>
+            <a href="#reviews" class="block py-2 text-zwhite">Reviews</a>
+            <a href="#contact-form" class="block py-2 mt-2 text-center bg-zrose rounded text-white">Book Services</a>
+        </div>
+    </nav>
+
+    <header class="hero-bg pt-28 pb-12 px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-purple-100 text-zrose text-xs font-bold tracking-widest uppercase mb-6 border border-purple-200 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-green-500 inline-block mr-1 animate-pulse"></span>
+                Available for New Projects
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-zwhite mb-6 leading-tight">
+                I help founders & SMEs turn ads into <span class="gradient-text">predictable revenue</span>.
+            </h1>
+            <p class="text-lg text-zgray mb-6 max-w-2xl mx-auto font-medium">
+                Stop guessing with your marketing. I build high-performance Meta & TikTok ad systems backed by clean tracking, strong creatives, and ruthless optimization.
+            </p>
+            <p class="text-lg text-zrose font-bold italic mb-10 max-w-2xl mx-auto">
+                "If you want vibes, hire an influencer. If you want sales, we talk."
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <!-- LINKED TO PORTFOLIO.HTML -->
+                <a href="portfolio.html" class="bg-zrose text-white px-8 py-4 rounded-xl font-bold hover:bg-purple-800 border border-transparent transition duration-300 shadow-lg shadow-zrose/20 flex items-center justify-center gap-2">
+                    <i class="fas fa-briefcase"></i> View My Portfolio
+                </a>
+                
+                <a href="#services" class="bg-white text-zwhite px-8 py-4 rounded-xl font-bold hover:border-zrose hover:text-zrose transition duration-300 shadow-sm border border-slate-200">
+                    View Packages
+                </a>
+
+                <a href="#ai-tools" class="border-2 border-zrose text-zrose px-8 py-4 rounded-xl font-bold transition duration-300 hover:bg-zrose hover:text-white">
+                    Try ✨ AI Tools
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="services" class="py-16 px-6 bg-transparent">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-zwhite mb-4">Strategic Growth Services</h2>
+                <p class="text-zgray">Tailored solutions for independent founders and small-to-medium businesses.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white/60 hover:border-zrose transition relative group shadow-lg hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-zwhite mb-2">Ad Account Setup (Foundation)</h3>
+                    <p class="text-zgray text-sm mb-6">For businesses that want ads that actually track sales.</p>
+                    <div class="text-2xl font-bold text-zrose mb-6">₦120,000 <span class="text-sm text-gray-500 font-normal">($150)</span></div>
+                    <ul class="text-sm text-slate-700 space-y-3 mb-8">
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Meta Pixel & Conversion API (CAPI)</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Conversion events configuration</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Basic TikTok Pixel installation</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Testing & verification</li>
+                    </ul>
+                    <button onclick="selectService('tracking')" class="w-full text-center py-3 bg-white border border-slate-200 hover:bg-zrose hover:text-white text-zwhite rounded-lg font-semibold transition duration-300">Get Started</button>
+                    <p class="mt-4 text-xs text-zgray italic text-center">Perfect for e-commerce brands, startups, and newly launched websites.</p>
+                </div>
+
+                <!-- Service Card 2 (Featured) -->
+                <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl border-2 border-zrose relative shadow-xl shadow-purple-600/10 transform md:-translate-y-4">
+                    <div class="bg-zrose text-white text-[10px] uppercase font-bold px-3 py-1 absolute top-4 right-4 rounded-full">Outsourced Growth Dept</div>
+                    <h3 class="text-xl font-bold text-zwhite mb-2">Performance Scale</h3>
+                    <p class="text-zgray text-sm mb-6">Full management of your Meta & TikTok ad accounts to drive revenue.</p>
+                    <div class="text-2xl font-bold text-zrose mb-6">₦250,000 <span class="text-sm text-gray-500 font-normal">/mo ($450)</span></div>
+                    <ul class="text-sm text-slate-700 space-y-3 mb-8">
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Full Media Buying (Meta & TikTok)</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Creative Direction & Ad Concepts</li>
+                        <li class="pl-6 text-xs text-slate-500 italic">Design & video execution via Canva / CapCut</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Weekly ROAS & performance optimization</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Monthly performance report + insights</li>
+                    </ul>
+                    <button onclick="selectService('performance')" class="w-full text-center py-3 bg-zrose hover:bg-purple-800 hover:text-white text-white rounded-lg font-semibold transition duration-300 shadow-md">Start Scaling</button>
+                    <p class="mt-4 text-xs text-zgray italic text-center">Best for brands ready to scale, not “try ads and see.”</p>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white/60 hover:border-zrose transition shadow-lg hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-zwhite mb-2">Growth Audit</h3>
+                    <p class="text-zgray text-sm mb-6">A deep funnel teardown for founders & developers.</p>
+                    <div class="text-2xl font-bold text-zrose mb-6">₦30,000 <span class="text-sm text-gray-500 font-normal">/session ($40)</span></div>
+                    <ul class="text-sm text-slate-700 space-y-3 mb-8">
+                        <li><i class="fas fa-check text-zrose mr-2"></i> 60-minute strategy call</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Website / App funnel audit</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Ad & targeting recommendations</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Clear next steps to improve conversions</li>
+                    </ul>
+                    <button onclick="selectService('audit')" class="w-full text-center py-3 bg-white border border-slate-200 hover:bg-zrose hover:text-white text-zwhite rounded-lg font-semibold transition duration-300">Book Audit</button>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="bg-white/60 backdrop-blur-md p-8 rounded-2xl border border-white/60 hover:border-zrose transition shadow-lg hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-zwhite mb-2">Social Commerce Launch</h3>
+                    <p class="text-zgray text-sm mb-6">For Nigerian vendors ready to stop selling like amateurs.</p>
+                    <div class="text-2xl font-bold text-zrose mb-6">₦50,000 <span class="text-sm text-gray-500 font-normal">(special rate)</span></div>
+                    <ul class="text-sm text-slate-700 space-y-3 mb-8">
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Simple sales funnel setup</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> 1-week boosted content strategy</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Content creation (optional)</li>
+                        <li><i class="fas fa-check text-zrose mr-2"></i> Bio, link & CTA optimization</li>
+                    </ul>
+                    <button onclick="selectService('social')" class="w-full text-center py-3 bg-white border border-slate-200 hover:bg-zrose hover:text-white text-zwhite rounded-lg font-semibold transition duration-300">Get Started</button>
+                    <p class="mt-4 text-xs text-zgray italic text-center">👉 Ideal for small businesses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-form" class="py-16 px-6 bg-transparent">
+        <div class="max-w-3xl mx-auto">
+            <div class="form-card p-8 md:p-12 rounded-3xl relative overflow-hidden bg-white/60 border border-white/60 shadow-xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold mb-4">Start Your Growth Journey</h2>
+                    <p class="text-zgray">Fill in your details and I'll reach out within 24 hours.</p>
+                </div>
+
+                <form id="growthForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-zgray mb-2">Email Address</label>
+                            <input type="email" required id="formEmail" class="w-full px-4 py-3 rounded-xl placeholder-gray-500" placeholder="you@company.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-zgray mb-2">Preferred Service</label>
+                            <select id="formService" class="w-full px-4 py-3 rounded-xl">
+                                <option value="tracking">Ad Account Setup (Foundation)</option>
+                                <option value="performance">Ads Performance Scale</option>
+                                <option value="audit">Business Growth Audit</option>
+                                <option value="social">Social Commerce Launch</option>
+                                <option value="other">Other / Custom Strategy</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-zgray mb-2">Means of Contact</label>
+                            <select id="formContact" class="w-full px-4 py-3 rounded-xl">
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="email">Email Only</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-zgray mb-2">Contact Info (Phone/Handle)</label>
+                            <input type="text" required id="formContactDetail" class="w-full px-4 py-3 rounded-xl placeholder-gray-500" placeholder="e.g. +234 ... or @handle">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-zgray mb-2">Preferred Contact Time</label>
+                        <select id="formTime" class="w-full px-4 py-3 rounded-xl">
+                            <option value="morning">Morning (9AM - 12PM)</option>
+                            <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                            <option value="evening">Evening (5PM - 8PM)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="w-full bg-zrose hover:bg-purple-800 hover:text-white text-white py-4 rounded-xl font-bold text-lg transition duration-300 shadow-lg shadow-zrose/20">
+                        Submit My Request
+                    </button>
+                </form>
+
+                <div id="formSuccess" class="hidden text-center py-10">
+                    <div class="text-zrose text-6xl mb-4"><i class="fas fa-check-circle"></i></div>
+                    <h3 class="text-2xl font-bold mb-2">Request Received!</h3>
+                    <p class="text-zgray mb-6">I've received your details and will contact you at your preferred time.</p>
+                    <button onclick="resetForm()" class="text-purple-700 underline font-semibold">Send another request</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-tools" class="py-16 px-6 relative overflow-hidden bg-transparent">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold tracking-widest uppercase mb-4">Beta Feature</span>
+                <h2 class="text-3xl font-bold text-zwhite mb-4">Try My ✨ AI Growth Suite</h2>
+                <p class="text-zgray">Powered by Gemini. Get a taste of how I think about performance marketing.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tool 1 -->
+                <div class="ai-card p-8 rounded-2xl flex flex-col h-full bg-white/50 border border-white/60">
+                    <div class="mb-6">
+                        <i class="fas fa-pencil-alt text-zrose text-2xl mb-4"></i>
+                        <h3 class="text-xl font-bold text-zwhite mb-2">Ad Copy ✨</h3>
+                        <p class="text-zgray text-sm">Generate high-converting Meta/TikTok copy for your product.</p>
+                    </div>
+                    <textarea id="productDesc" class="w-full rounded-lg p-3 text-sm text-zwhite mb-4 h-24 placeholder-gray-500" placeholder="Describe your product (e.g., Organic skincare oil for dry skin)..."></textarea>
+                    <button onclick="runAdGen()" id="adBtn" class="w-full bg-zrose py-3 rounded-lg font-bold text-white hover:bg-purple-800 transition mt-auto flex items-center justify-center">Generate Ad Copy ✨</button>
+                    <div id="adResult" class="mt-4 text-xs text-gray-800 max-h-40 overflow-y-auto hidden bg-white/80 p-3 rounded border border-white/30"></div>
+                </div>
+
+                <!-- Tool 2 -->
+                <div class="ai-card p-8 rounded-2xl flex flex-col h-full bg-white/50 border border-white/60">
+                    <div class="mb-6">
+                        <i class="fas fa-search-dollar text-blue-600 text-2xl mb-4"></i>
+                        <h3 class="text-xl font-bold text-zwhite mb-2">Page Auditor ✨</h3>
+                        <p class="text-zgray text-sm">Let AI audit your website for conversion "leaks".</p>
+                    </div>
+                    <input id="siteUrl" type="text" class="w-full rounded-lg p-3 text-sm text-zwhite mb-4 placeholder-gray-500" placeholder="Paste your URL here...">
+                    <button onclick="runAuditor()" id="auditBtn" class="w-full bg-blue-600 py-3 rounded-lg font-bold text-white hover:bg-blue-800 transition mt-auto flex items-center justify-center">Audit My Page ✨</button>
+                    <div id="auditResult" class="mt-4 text-xs text-gray-800 max-h-40 overflow-y-auto hidden bg-white/80 p-3 rounded border border-white/30"></div>
+                </div>
+
+                <!-- Tool 3 -->
+                <div class="ai-card p-8 rounded-2xl flex flex-col h-full bg-white/50 border border-white/60">
+                    <div class="mb-6">
+                        <i class="fas fa-chess text-zpink text-2xl mb-4"></i>
+                        <h3 class="text-xl font-bold text-zwhite mb-2">Strategy Plan ✨</h3>
+                        <p class="text-zgray text-sm">Get a 3-step growth roadmap for your 2026 goals.</p>
+                    </div>
+                    <input id="bizGoal" type="text" class="w-full rounded-lg p-3 text-sm text-zwhite mb-4 placeholder-gray-500" placeholder="Goal (e.g. 50 new leads/month)...">
+                    <button onclick="runStrategy()" id="stratBtn" class="w-full bg-zpink py-3 rounded-lg font-bold text-white hover:bg-pink-700 transition mt-auto flex items-center justify-center">Get Roadmap ✨</button>
+                    <div id="stratResult" class="mt-4 text-xs text-gray-800 max-h-40 overflow-y-auto hidden bg-white/80 p-3 rounded border border-white/30"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-16 px-6 bg-transparent">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-zwhite text-center mb-16">Success Stories</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white/40 p-8 rounded-2xl border border-white/40 italic hover:border-zrose transition shadow-sm backdrop-blur-sm">
+                    "Oiza scaled our user base from 1k to 11k+ using precise Meta Ads strategies. Her approach to growth is data-driven and undeniable."
+                    <div class="mt-6 not-italic font-bold text-zrose">— Founder, Corperland</div>
+                </div>
+                <div class="bg-white/40 p-8 rounded-2xl border border-white/40 italic hover:border-zrose transition shadow-sm backdrop-blur-sm">
+                    "Oiza helped restructure my business offering and directed my content. We flipped a 50k investment in ads into getting booked solid through December and January, leading to over 700k in sales."
+                    <div class="mt-6 not-italic font-bold text-zrose">— Ivy, Founder of Shot by Ivy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-slate-300 text-center text-gray-600 text-sm bg-[#eaeaea]">
+        <p>&copy; 2026 Z Does Marketing. Growth Expert.</p>
+        <div class="mt-4 flex justify-center space-x-6">
+            <a href="https://www.linkedin.com/in/oiza-ibrahim-84012519a/" target="_blank" class="hover:text-zrose transition">LinkedIn</a>
+            <a href="https://x.com/blessing_oiza" target="_blank" class="hover:text-zrose transition">X (Twitter)</a>
+            <a href="https://www.instagram.com/z_does_marketing/" target="_blank" class="hover:text-zrose transition">Instagram</a>
+        </div>
+    </footer>
+
+    <script>
+        // Form Handling Logic
+        function selectService(serviceValue) {
+            const select = document.getElementById('formService');
+            select.value = serviceValue;
+            document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            // Simulate form submission to backend
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Sending...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('growthForm').classList.add('hidden');
+                document.getElementById('formSuccess').classList.remove('hidden');
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }, 1500);
+        }
+
+        function resetForm() {
+            document.getElementById('growthForm').reset();
+            document.getElementById('growthForm').classList.remove('hidden');
+            document.getElementById('formSuccess').classList.add('hidden');
+        }
+
+        // Simulated AI Tools (Mocking responses since backend is not connected)
+        async function runAdGen() {
+            const input = document.getElementById('productDesc').value;
+            if(!input) return alert("Please describe your product!");
+            
+            const btn = document.getElementById('adBtn');
+            const resultDiv = document.getElementById('adResult');
+            
+            setLoading(btn, true);
+            resultDiv.classList.add('hidden');
+
+            // Mock Delay
+            setTimeout(() => {
+                const mockCopy = `<strong>🔥 HOOK:</strong> Stop settling for dull skin.<br><br><strong>📖 STORY:</strong> You've tried everything, but dryness keeps coming back. Our organic blend penetrates deep to lock in moisture for 24 hours.<br><br><strong>👉 CTA:</strong> Shop the glow now! Link in bio. #Skincare #Glow`;
+                resultDiv.innerHTML = mockCopy;
+                resultDiv.classList.remove('hidden');
+                setLoading(btn, false);
+            }, 2000);
+        }
+
+        async function runAuditor() {
+            const input = document.getElementById('siteUrl').value;
+            if(!input) return alert("Please enter a URL!");
+            
+            const btn = document.getElementById('auditBtn');
+            const resultDiv = document.getElementById('auditResult');
+            
+            setLoading(btn, true);
+            resultDiv.classList.add('hidden');
+
+            setTimeout(() => {
+                const mockAudit = `<strong>🚀 Audit Report for ${input}</strong><br><br>1. ⚠️ <strong>Headline:</strong> Too vague. Make it benefit-driven.<br>2. ✅ <strong>Speed:</strong> Loads fast.<br>3. ❌ <strong>CTA:</strong> Hard to find on mobile. Make it sticky at the bottom.`;
+                resultDiv.innerHTML = mockAudit;
+                resultDiv.classList.remove('hidden');
+                setLoading(btn, false);
+            }, 2000);
+        }
+
+        async function runStrategy() {
+            const input = document.getElementById('bizGoal').value;
+            if(!input) return alert("Please enter a goal!");
+            
+            const btn = document.getElementById('stratBtn');
+            const resultDiv = document.getElementById('stratResult');
+            
+            setLoading(btn, true);
+            resultDiv.classList.add('hidden');
+
+            setTimeout(() => {
+                const mockStrategy = `<strong>📈 Roadmap to: "${input}"</strong><br><br><strong>Phase 1:</strong> Fix tracking (Pixel/CAPI).<br><strong>Phase 2:</strong> Test 3 creative angles on Meta Reels.<br><strong>Phase 3:</strong> Scale winning ad by 20% every 3 days.`;
+                resultDiv.innerHTML = mockStrategy;
+                resultDiv.classList.remove('hidden');
+                setLoading(btn, false);
+            }, 2000);
+        }
+
+        function setLoading(btn, isLoading) {
+            if(isLoading) {
+                btn.dataset.originalText = btn.innerText;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Thinking...';
+                btn.disabled = true;
+                btn.classList.add('opacity-75', 'cursor-not-allowed');
+            } else {
+                btn.innerHTML = btn.dataset.originalText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+        }
+    </script>
+</body>
+</html>
